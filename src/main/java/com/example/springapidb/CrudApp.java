@@ -9,12 +9,14 @@ import org.springframework.context.annotation.Bean;
 
 
 import java.util.List;
+import java.util.Scanner;
 
 @SpringBootApplication
 public class CrudApp {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CrudApp.class, args);
+
 	}
 
 	@Bean
@@ -28,8 +30,9 @@ public class CrudApp {
 
 			//querForStudents(studentDAO);
 
-			queryForStudentByLastName(studentDAO);
+			//queryForStudentByLastName(studentDAO);
 
+			updateTheStudent(studentDAO);
 		};
 		
 	}
@@ -37,7 +40,6 @@ public class CrudApp {
 
 
 	// implement method create student
-
 	private void createStudent(StudentDAO studentDAO) {
 
 		// Create the student object
@@ -55,6 +57,7 @@ public class CrudApp {
 
 
 	// implement method create multiple students
+
 	private void createMultipleStudent(StudentDAO studentDAO) {
 
 		// Create the students
@@ -77,8 +80,8 @@ public class CrudApp {
 	}
 
 
-
 	//	create method to find student
+
 	public void readStudent(StudentDAO studentDAO) {
 
 		// create the student obj
@@ -99,7 +102,6 @@ public class CrudApp {
 	}
 
 
-
 	public void querForStudents(StudentDAO studentDAO){
 		// get list of student
 		List<Student> theStudents = studentDAO.findAll();
@@ -113,12 +115,38 @@ public class CrudApp {
 
 
 	private void queryForStudentByLastName(StudentDAO studentDAO) {
+		Scanner sc = new Scanner(System.in);
 		// get a list of students
-		List<Student> theStudents = studentDAO.findByLastName("Je");
+		System.out.print("Find the last name: ");
+		List<Student> theStudents = studentDAO.findByLastName(sc.next());
 		//display list of students
 		for(Student student : theStudents){
 			System.out.println(student);
 		}
+	}
+
+	private void updateTheStudent(StudentDAO studentDAO) {
+		Scanner sc = new Scanner(System.in);
+		// RETRIVE STUDENT BASED ON THE ID: PRIMARY KEY
+		System.out.print("Select primary Id key: ");
+		int studentId = sc.nextInt();
+		System.out.println("Getting student with id: " + studentId);
+
+		Student theStudent = studentDAO.findById(studentId);
+
+		System.out.println("Update student...");
+
+		//CHANGE FIRST NAME TO "Bianca"
+		System.out.print("Update first name: ");
+		theStudent.setFirstName(sc.next());
+		System.out.print("Update last name: ");
+		theStudent.setLastName(sc.next());
+		studentDAO.update(theStudent);
+		studentDAO.update(theStudent);
+
+		// DISPLAY UPDATE STUDENT
+		System.out.println("Update student: " + theStudent);
+
 	}
 
 }
