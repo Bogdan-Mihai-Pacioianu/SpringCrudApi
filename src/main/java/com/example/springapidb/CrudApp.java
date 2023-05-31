@@ -32,14 +32,16 @@ public class CrudApp {
 
 			//queryForStudentByLastName(studentDAO);
 
-			updateTheStudent(studentDAO);
+			//updateTheStudent(studentDAO);
+
+			deleteTheStudent(studentDAO);
 		};
 		
 	}
 
 
-
 	// implement method create student
+
 	private void createStudent(StudentDAO studentDAO) {
 
 		// Create the student object
@@ -57,7 +59,6 @@ public class CrudApp {
 
 
 	// implement method create multiple students
-
 	private void createMultipleStudent(StudentDAO studentDAO) {
 
 		// Create the students
@@ -80,8 +81,8 @@ public class CrudApp {
 	}
 
 
-	//	create method to find student
 
+	//	create method to find student
 	public void readStudent(StudentDAO studentDAO) {
 
 		// create the student obj
@@ -146,6 +147,16 @@ public class CrudApp {
 
 		// DISPLAY UPDATE STUDENT
 		System.out.println("Update student: " + theStudent);
+
+	}
+		// Delete Method
+	private void deleteTheStudent(StudentDAO studentDAO) {
+			Scanner sc = new Scanner(System.in);
+		// delete the Student
+		System.out.println("Enter the id of student to whant delete: ");
+		int studentId = sc.nextInt();
+		System.out.println("Delete the student id: " + studentId);
+		studentDAO.delete(studentId);
 
 	}
 
