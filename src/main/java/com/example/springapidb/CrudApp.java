@@ -24,7 +24,7 @@ public class CrudApp {
 		return runner -> { 
 			//createStudent(studentDAO);
 
-			//createMultipleStudent(studentDAO);
+			createMultipleStudent(studentDAO);
 
 			//readStudent(studentDAO);
 
@@ -34,7 +34,7 @@ public class CrudApp {
 
 			//updateTheStudent(studentDAO);
 
-			deleteTheStudent(studentDAO);
+			//deleteTheStudent(studentDAO);
 		};
 		
 	}
@@ -102,7 +102,6 @@ public class CrudApp {
 
 	}
 
-
 	public void querForStudents(StudentDAO studentDAO){
 		// get list of student
 		List<Student> theStudents = studentDAO.findAll();
@@ -112,7 +111,6 @@ public class CrudApp {
 			System.out.println(tempStudent);
 		}
 	}
-
 
 
 	private void queryForStudentByLastName(StudentDAO studentDAO) {
